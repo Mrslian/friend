@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.imnu.mapper.SysRegisterMapper" >
+  <resultMap id="BaseResultMap" type="com.imnu.pojo.SysRegister" >
+    <result column="s_id" property="sId" jdbcType="VARCHAR" />
+    <result column="s_login_name" property="sLoginName" jdbcType="VARCHAR" />
+    <result column="pwd" property="pwd" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="INTEGER" />
+    <result column="birthday" property="birthday" jdbcType="DATE" />
+    <result column="photo_id" property="photoId" jdbcType="INTEGER" />
+    <result column="h_url" property="hUrl" jdbcType="VARCHAR" />
+    <result column="b_url" property="bUrl" jdbcType="VARCHAR" />
+    <result column="signature" property="signature" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="phone_model" property="phoneModel" jdbcType="VARCHAR" />
+    <result column="sum" property="sum" jdbcType="INTEGER" />
+    <result column="last_time" property="lastTime" jdbcType="DATE" />
+    <result column="c_Id" property="cId" jdbcType="INTEGER" />
+    <result column="s_class" property="sClass" jdbcType="VARCHAR" />
+    <result column="hight_school" property="hightSchool" jdbcType="VARCHAR" />
+    <result column="home" property="home" jdbcType="VARCHAR" />
+    <result column="dwell" property="dwell" jdbcType="VARCHAR" />
+    <result column="a_id" property="aId" jdbcType="INTEGER" />
+    <result column="join_time" property="joinTime" jdbcType="DATE" />
+    <result column="g_id" property="gId" jdbcType="INTEGER" />
+    <result column="vip" property="vip" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    s_id, s_login_name, pwd, name, sex, birthday, photo_id, h_url, b_url, signature, 
+    phone, phone_model, sum, last_time, c_Id, s_class, hight_school, home, dwell, a_id, 
+    join_time, g_id, vip
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.imnu.pojo.SysRegisterExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sys_register
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.imnu.pojo.SysRegisterExample" >
+    delete from sys_register
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.imnu.pojo.SysRegister" >
+    insert into sys_register (s_id, s_login_name, pwd, 
+      name, sex, birthday, photo_id, 
+      h_url, b_url, signature, 
+      phone, phone_model, sum, 
+      last_time, c_Id, s_class, 
+      hight_school, home, dwell, 
+      a_id, join_time, g_id, vip
+      )
+    values (#{sId,jdbcType=VARCHAR}, #{sLoginName,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, #{birthday,jdbcType=DATE}, #{photoId,jdbcType=INTEGER}, 
+      #{hUrl,jdbcType=VARCHAR}, #{bUrl,jdbcType=VARCHAR}, #{signature,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{phoneModel,jdbcType=VARCHAR}, #{sum,jdbcType=INTEGER}, 
+      #{lastTime,jdbcType=DATE}, #{cId,jdbcType=INTEGER}, #{sClass,jdbcType=VARCHAR}, 
+      #{hightSchool,jdbcType=VARCHAR}, #{home,jdbcType=VARCHAR}, #{dwell,jdbcType=VARCHAR}, 
+      #{aId,jdbcType=INTEGER}, #{joinTime,jdbcType=DATE}, #{gId,jdbcType=INTEGER}, #{vip,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.imnu.pojo.SysRegister" >
+    insert into sys_register
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sId != null" >
+        s_id,
+      </if>
+      <if test="sLoginName != null" >
+        s_login_name,
+      </if>
+      <if test="pwd != null" >
+        pwd,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+      <if test="photoId != null" >
+        photo_id,
+      </if>
+      <if test="hUrl != null" >
+        h_url,
+      </if>
+      <if test="bUrl != null" >
+        b_url,
+      </if>
+      <if test="signature != null" >
+        signature,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="phoneModel != null" >
+        phone_model,
+      </if>
+      <if test="sum != null" >
+        sum,
+      </if>
+      <if test="lastTime != null" >
+        last_time,
+      </if>
+      <if test="cId != null" >
+        c_Id,
+      </if>
+      <if test="sClass != null" >
+        s_class,
+      </if>
+      <if test="hightSchool != null" >
+        hight_school,
+      </if>
+      <if test="home != null" >
+        home,
+      </if>
+      <if test="dwell != null" >
+        dwell,
+      </if>
+      <if test="aId != null" >
+        a_id,
+      </if>
+      <if test="joinTime != null" >
+        join_time,
+      </if>
+      <if test="gId != null" >
+        g_id,
+      </if>
+      <if test="vip != null" >
+        vip,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sId != null" >
+        #{sId,jdbcType=VARCHAR},
+      </if>
+      <if test="sLoginName != null" >
+        #{sLoginName,jdbcType=VARCHAR},
+      </if>
+      <if test="pwd != null" >
+        #{pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="photoId != null" >
+        #{photoId,jdbcType=INTEGER},
+      </if>
+      <if test="hUrl != null" >
+        #{hUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="bUrl != null" >
+        #{bUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="signature != null" >
+        #{signature,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneModel != null" >
+        #{phoneModel,jdbcType=VARCHAR},
+      </if>
+      <if test="sum != null" >
+        #{sum,jdbcType=INTEGER},
+      </if>
+      <if test="lastTime != null" >
+        #{lastTime,jdbcType=DATE},
+      </if>
+      <if test="cId != null" >
+        #{cId,jdbcType=INTEGER},
+      </if>
+      <if test="sClass != null" >
+        #{sClass,jdbcType=VARCHAR},
+      </if>
+      <if test="hightSchool != null" >
+        #{hightSchool,jdbcType=VARCHAR},
+      </if>
+      <if test="home != null" >
+        #{home,jdbcType=VARCHAR},
+      </if>
+      <if test="dwell != null" >
+        #{dwell,jdbcType=VARCHAR},
+      </if>
+      <if test="aId != null" >
+        #{aId,jdbcType=INTEGER},
+      </if>
+      <if test="joinTime != null" >
+        #{joinTime,jdbcType=DATE},
+      </if>
+      <if test="gId != null" >
+        #{gId,jdbcType=INTEGER},
+      </if>
+      <if test="vip != null" >
+        #{vip,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.imnu.pojo.SysRegisterExample" resultType="java.lang.Integer" >
+    select count(*) from sys_register
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sys_register
+    <set >
+      <if test="record.sId != null" >
+        s_id = #{record.sId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sLoginName != null" >
+        s_login_name = #{record.sLoginName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pwd != null" >
+        pwd = #{record.pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sex != null" >
+        sex = #{record.sex,jdbcType=INTEGER},
+      </if>
+      <if test="record.birthday != null" >
+        birthday = #{record.birthday,jdbcType=DATE},
+      </if>
+      <if test="record.photoId != null" >
+        photo_id = #{record.photoId,jdbcType=INTEGER},
+      </if>
+      <if test="record.hUrl != null" >
+        h_url = #{record.hUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bUrl != null" >
+        b_url = #{record.bUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.signature != null" >
+        signature = #{record.signature,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phoneModel != null" >
+        phone_model = #{record.phoneModel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sum != null" >
+        sum = #{record.sum,jdbcType=INTEGER},
+      </if>
+      <if test="record.lastTime != null" >
+        last_time = #{record.lastTime,jdbcType=DATE},
+      </if>
+      <if test="record.cId != null" >
+        c_Id = #{record.cId,jdbcType=INTEGER},
+      </if>
+      <if test="record.sClass != null" >
+        s_class = #{record.sClass,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hightSchool != null" >
+        hight_school = #{record.hightSchool,jdbcType=VARCHAR},
+      </if>
+      <if test="record.home != null" >
+        home = #{record.home,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dwell != null" >
+        dwell = #{record.dwell,jdbcType=VARCHAR},
+      </if>
+      <if test="record.aId != null" >
+        a_id = #{record.aId,jdbcType=INTEGER},
+      </if>
+      <if test="record.joinTime != null" >
+        join_time = #{record.joinTime,jdbcType=DATE},
+      </if>
+      <if test="record.gId != null" >
+        g_id = #{record.gId,jdbcType=INTEGER},
+      </if>
+      <if test="record.vip != null" >
+        vip = #{record.vip,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sys_register
+    set s_id = #{record.sId,jdbcType=VARCHAR},
+      s_login_name = #{record.sLoginName,jdbcType=VARCHAR},
+      pwd = #{record.pwd,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      sex = #{record.sex,jdbcType=INTEGER},
+      birthday = #{record.birthday,jdbcType=DATE},
+      photo_id = #{record.photoId,jdbcType=INTEGER},
+      h_url = #{record.hUrl,jdbcType=VARCHAR},
+      b_url = #{record.bUrl,jdbcType=VARCHAR},
+      signature = #{record.signature,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      phone_model = #{record.phoneModel,jdbcType=VARCHAR},
+      sum = #{record.sum,jdbcType=INTEGER},
+      last_time = #{record.lastTime,jdbcType=DATE},
+      c_Id = #{record.cId,jdbcType=INTEGER},
+      s_class = #{record.sClass,jdbcType=VARCHAR},
+      hight_school = #{record.hightSchool,jdbcType=VARCHAR},
+      home = #{record.home,jdbcType=VARCHAR},
+      dwell = #{record.dwell,jdbcType=VARCHAR},
+      a_id = #{record.aId,jdbcType=INTEGER},
+      join_time = #{record.joinTime,jdbcType=DATE},
+      g_id = #{record.gId,jdbcType=INTEGER},
+      vip = #{record.vip,jdbcType=TINYINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>
